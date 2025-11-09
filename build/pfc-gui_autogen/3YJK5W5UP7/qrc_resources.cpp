@@ -1,18 +1,13 @@
 /****************************************************************************
 ** Resource object code
 **
-** Created by: The Resource Compiler for Qt version 6.10.0
+** Created by: The Resource Compiler for Qt version 6.4.2
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#ifdef _MSC_VER
-// disable informational message "function ... selected for automatic inline expansion"
-#pragma warning (disable: 4711)
-#endif
-
 static const unsigned char qt_resource_data[] = {
-  // app_icon.png
+  // /home/anshi/Desktop/Parallel_File_Compressor/resources/icons/app_icon.png
   0x0,0x12,0xae,0xe,
   0x89,
   0x50,0x4e,0x47,0xd,0xa,0x1a,0xa,0x0,0x0,0x0,0xd,0x49,0x48,0x44,0x52,0x0,
@@ -76554,7 +76549,7 @@ static const unsigned char qt_resource_struct[] = {
 0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,
   // :/icons/app_icon.png
   0x0,0x0,0x0,0x10,0x0,0x0,0x0,0x0,0x0,0x1,0x0,0x0,0x0,0x0,
-0x0,0x0,0x1,0x9a,0x61,0xb0,0x67,0x37,
+0x0,0x0,0x1,0x9a,0x69,0x71,0x9a,0x1,
 
 };
 
@@ -76570,9 +76565,7 @@ static const unsigned char qt_resource_struct[] = {
 #   define QT_RCC_MANGLE_NAMESPACE(name) name
 #endif
 
-#if defined(QT_INLINE_NAMESPACE)
-inline namespace QT_NAMESPACE {
-#elif defined(QT_NAMESPACE)
+#ifdef QT_NAMESPACE
 namespace QT_NAMESPACE {
 #endif
 
@@ -76601,18 +76594,9 @@ int QT_RCC_MANGLE_NAMESPACE(qCleanupResources_resources)()
     return 1;
 }
 
-#ifdef __clang__
-#   pragma clang diagnostic push
-#   pragma clang diagnostic ignored "-Wexit-time-destructors"
-#endif
-
 namespace {
    struct initializer {
        initializer() { QT_RCC_MANGLE_NAMESPACE(qInitResources_resources)(); }
        ~initializer() { QT_RCC_MANGLE_NAMESPACE(qCleanupResources_resources)(); }
    } dummy;
 }
-
-#ifdef __clang__
-#   pragma clang diagnostic pop
-#endif

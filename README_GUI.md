@@ -1,4 +1,4 @@
-# Parallel File Compressor v2.0 - GUI Edition
+# Parallel File Compressor - GUI Edition
 
 A high-performance parallel file compression and decompression tool with a modern Qt 6 desktop GUI.
 

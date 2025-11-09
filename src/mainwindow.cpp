@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget* parent)
     , decompressionThread(nullptr)
     , benchmarkThread(nullptr)
 {
-    setWindowTitle("Parallel File Compressor v2.0");
+    setWindowTitle("Parallel File Compressor & Decompressor");
     setWindowIcon(QIcon(":/icons/app_icon.png"));
     resize(1200, 800);
     

@@ -93,7 +93,9 @@ bool Compressor::writeCompressedFile(const std::string& outputFile,
     strncpy(metadata.originalFilename, originalFilename.c_str(), 255);
     
     // Calculate offsets
-    uint64_t dataOffset = sizeof(FileMetadata) + (chunks.size() * sizeof(uint64_t) * 2);
+    // FileMetadata fields: magic(4) + version(4) + originalSize(8) + numChunks(4) + algorithm(4) + filename(256) = 280
+    // Then: chunkOffsets (numChunks * 8) + chunkSizes (numChunks * 4)
+    uint64_t dataOffset = 280 + (chunks.size() * sizeof(uint64_t)) + (chunks.size() * sizeof(uint32_t));
     uint64_t currentOffset = dataOffset;
     
     for (size_t i = 0; i < chunks.size(); i++) {
@@ -148,6 +150,9 @@ bool Compressor::compressFile(const std::string& inputFile,
               << Utils::formatFileSize(fileSize) << ") with " 
               << threadCount << " threads..." << std::endl;
     
+    Utils::Timer timer;
+    timer.start();
+    
     std::vector<std::vector<uint8_t>> compressedChunks;
     if (!splitAndCompressChunks(inputFile, compressedChunks, numChunks)) {
         return false;
@@ -162,10 +167,13 @@ bool Compressor::compressFile(const std::string& inputFile,
         return false;
     }
     
+    timer.stop();
+    double elapsedMs = timer.elapsedMs();
+    
     uint64_t totalOutputSize = Utils::getFileSize(outputFile);
     std::cout << "\nCompression completed!" << std::endl;
     std::cout << "Output file: " << outputFile << std::endl;
-    Utils::printCompressionStats(fileSize, totalOutputSize, 0, threadCount);
+    Utils::printCompressionStats(fileSize, totalOutputSize, elapsedMs, threadCount);
     
     return true;
 }

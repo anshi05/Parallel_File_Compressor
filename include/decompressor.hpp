@@ -14,7 +14,8 @@ public:
                        const std::string& outputFile = "");
     
     // Decompress a single chunk
-    static std::vector<uint8_t> decompressChunk(const std::vector<uint8_t>& input);
+    static std::vector<uint8_t> decompressChunk(const std::vector<uint8_t>& input, 
+                                                 uint64_t expectedSize = 0);
     
 private:
     int threadCount;

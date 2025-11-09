@@ -1,3 +1,1 @@
-C:\msys64\mingw64\bin\cmake.exe -E rm -f CMakeFiles\pfc.dir/objects.a
-C:\msys64\mingw64\bin\ar.exe qc CMakeFiles\pfc.dir/objects.a @CMakeFiles\pfc.dir\objects1.rsp
-C:\msys64\mingw64\bin\c++.exe  -O3 -O3 -DNDEBUG -Wl,--whole-archive CMakeFiles\pfc.dir/objects.a -Wl,--no-whole-archive -o pfc.exe -Wl,--out-implib,libpfc.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\pfc.dir\linkLibs.rsp
+/usr/bin/c++  -O3 -O3 -DNDEBUG CMakeFiles/pfc.dir/pfc_autogen/mocs_compilation.cpp.o CMakeFiles/pfc.dir/src/main.cpp.o CMakeFiles/pfc.dir/src/compressor.cpp.o CMakeFiles/pfc.dir/src/decompressor.cpp.o CMakeFiles/pfc.dir/src/benchmark.cpp.o CMakeFiles/pfc.dir/src/utils.cpp.o -o pfc  /usr/lib/x86_64-linux-gnu/libz.so /usr/lib/gcc/x86_64-linux-gnu/13/libgomp.so /usr/lib/x86_64-linux-gnu/libpthread.a 

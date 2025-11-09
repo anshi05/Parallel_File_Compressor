@@ -9,7 +9,7 @@ int main(int argc, char* argv[]) {
     QPixmap pixmap(800, 600);
     pixmap.fill(Qt::white);
     CompressorSplashScreen splash(pixmap);
-    splash.showMessage("Initializing Parallel File Compressor v2.0...");
+    splash.showMessage("Initializing Parallel File Compressor & Decompressor...");
     splash.show();
     app.processEvents();
     

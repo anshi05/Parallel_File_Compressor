@@ -9,12 +9,18 @@ Decompressor::Decompressor(int threadCount)
     omp_set_num_threads(this->threadCount);
 }
 
-std::vector<uint8_t> Decompressor::decompressChunk(const std::vector<uint8_t>& input) {
+std::vector<uint8_t> Decompressor::decompressChunk(const std::vector<uint8_t>& input, 
+                                                      uint64_t expectedSize) {
     std::vector<uint8_t> output;
     if (input.empty()) return output;
     
-    // Initial buffer estimation
-    uLongf decompressedSize = input.size() * 10;
+    // Use expected size if provided, otherwise estimate
+    uLongf decompressedSize;
+    if (expectedSize > 0) {
+        decompressedSize = expectedSize + (expectedSize / 10); // Add 10% buffer
+    } else {
+        decompressedSize = input.size() * 20; // Fallback estimation
+    }
     output.resize(decompressedSize);
     
     int ret = uncompress(output.data(), &decompressedSize, 
@@ -22,7 +28,24 @@ std::vector<uint8_t> Decompressor::decompressChunk(const std::vector<uint8_t>& i
     
     if (ret == Z_OK) {
         output.resize(decompressedSize);
+    } else if (ret == Z_BUF_ERROR) {
+        // Buffer too small, retry with larger buffer
+        if (expectedSize > 0) {
+            decompressedSize = expectedSize * 2; // Double the expected size
+        } else {
+            decompressedSize = input.size() * 50; // Fallback
+        }
+        output.resize(decompressedSize);
+        ret = uncompress(output.data(), &decompressedSize, 
+                        input.data(), input.size());
+        if (ret == Z_OK) {
+            output.resize(decompressedSize);
+        } else {
+            std::cerr << "Error: Decompression failed with code " << ret << std::endl;
+            output.clear();
+        }
     } else {
+        std::cerr << "Error: Decompression failed with code " << ret << std::endl;
         output.clear();
     }
     
@@ -73,6 +96,9 @@ bool Decompressor::readAndDecompressChunks(const std::string& compressedFile,
     
     std::vector<std::vector<uint8_t>> compressedChunks(metadata.numChunks);
     
+    // Calculate approximate original chunk size
+    uint64_t approxChunkSize = (metadata.originalSize + metadata.numChunks - 1) / metadata.numChunks;
+    
     // Read compressed chunks
     Utils::ProgressTracker progress(metadata.originalSize, "Reading compressed data");
     for (uint32_t i = 0; i < metadata.numChunks; i++) {
@@ -93,7 +119,8 @@ bool Decompressor::readAndDecompressChunks(const std::string& compressedFile,
         std::cout << "[Thread " << omp_get_thread_num() << "] Decompressing chunk " 
                   << (i + 1) << "/" << metadata.numChunks << std::endl;
         
-        decompressedChunks[i] = decompressChunk(compressedChunks[i]);
+        // Use approximate chunk size for better buffer estimation
+        decompressedChunks[i] = decompressChunk(compressedChunks[i], approxChunkSize);
     }
     
     return true;

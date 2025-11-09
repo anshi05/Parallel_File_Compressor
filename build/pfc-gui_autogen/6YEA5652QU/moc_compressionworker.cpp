@@ -1,24 +1,18 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'compressionworker.hpp'
 **
-** Created by: The Qt Meta Object Compiler version 69 (Qt 6.10.0)
+** Created by: The Qt Meta Object Compiler version 68 (Qt 6.4.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../../../include/compressionworker.hpp"
 #include <QtCore/qmetatype.h>
-
-#include <QtCore/qtmochelpers.h>
-
-#include <memory>
-
-
-#include <QtCore/qxptype_traits.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'compressionworker.hpp' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 69
-#error "This file was generated using the moc from 6.10.0. It"
+#elif Q_MOC_OUTPUT_REVISION != 68
+#error "This file was generated using the moc from 6.4.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -27,102 +21,198 @@
 #define Q_CONSTINIT
 #endif
 
+QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-QT_WARNING_DISABLE_GCC("-Wuseless-cast")
 namespace {
-struct qt_meta_tag_ZN17CompressionWorkerE_t {};
+struct qt_meta_stringdata_CompressionWorker_t {
+    uint offsetsAndSizes[42];
+    char stringdata0[18];
+    char stringdata1[16];
+    char stringdata2[1];
+    char stringdata3[11];
+    char stringdata4[7];
+    char stringdata5[20];
+    char stringdata6[8];
+    char stringdata7[8];
+    char stringdata8[9];
+    char stringdata9[13];
+    char stringdata10[15];
+    char stringdata11[7];
+    char stringdata12[15];
+    char stringdata13[11];
+    char stringdata14[12];
+    char stringdata15[14];
+    char stringdata16[6];
+    char stringdata17[9];
+    char stringdata18[10];
+    char stringdata19[11];
+    char stringdata20[12];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_CompressionWorker_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_CompressionWorker_t qt_meta_stringdata_CompressionWorker = {
+    {
+        QT_MOC_LITERAL(0, 17),  // "CompressionWorker"
+        QT_MOC_LITERAL(18, 15),  // "progressUpdated"
+        QT_MOC_LITERAL(34, 0),  // ""
+        QT_MOC_LITERAL(35, 10),  // "percentage"
+        QT_MOC_LITERAL(46, 6),  // "status"
+        QT_MOC_LITERAL(53, 19),  // "compressionFinished"
+        QT_MOC_LITERAL(73, 7),  // "success"
+        QT_MOC_LITERAL(81, 7),  // "message"
+        QT_MOC_LITERAL(89, 8),  // "uint64_t"
+        QT_MOC_LITERAL(98, 12),  // "originalSize"
+        QT_MOC_LITERAL(111, 14),  // "compressedSize"
+        QT_MOC_LITERAL(126, 6),  // "timeMs"
+        QT_MOC_LITERAL(133, 14),  // "chunkProcessed"
+        QT_MOC_LITERAL(148, 10),  // "chunkIndex"
+        QT_MOC_LITERAL(159, 11),  // "totalChunks"
+        QT_MOC_LITERAL(171, 13),  // "errorOccurred"
+        QT_MOC_LITERAL(185, 5),  // "error"
+        QT_MOC_LITERAL(191, 8),  // "compress"
+        QT_MOC_LITERAL(200, 9),  // "inputFile"
+        QT_MOC_LITERAL(210, 10),  // "outputFile"
+        QT_MOC_LITERAL(221, 11)   // "threadCount"
+    },
+    "CompressionWorker",
+    "progressUpdated",
+    "",
+    "percentage",
+    "status",
+    "compressionFinished",
+    "success",
+    "message",
+    "uint64_t",
+    "originalSize",
+    "compressedSize",
+    "timeMs",
+    "chunkProcessed",
+    "chunkIndex",
+    "totalChunks",
+    "errorOccurred",
+    "error",
+    "compress",
+    "inputFile",
+    "outputFile",
+    "threadCount"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto CompressionWorker::qt_create_metaobjectdata<qt_meta_tag_ZN17CompressionWorkerE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "CompressionWorker",
-        "progressUpdated",
-        "",
-        "percentage",
-        "status",
-        "compressionFinished",
-        "success",
-        "message",
-        "uint64_t",
-        "originalSize",
-        "compressedSize",
-        "timeMs",
-        "chunkProcessed",
-        "chunkIndex",
-        "totalChunks",
-        "errorOccurred",
-        "error",
-        "compress",
-        "inputFile",
-        "outputFile",
-        "threadCount"
-    };
+Q_CONSTINIT static const uint qt_meta_data_CompressionWorker[] = {
 
-    QtMocHelpers::UintData qt_methods {
-        // Signal 'progressUpdated'
-        QtMocHelpers::SignalData<void(int, const QString &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Int, 3 }, { QMetaType::QString, 4 },
-        }}),
-        // Signal 'compressionFinished'
-        QtMocHelpers::SignalData<void(bool, const QString &, uint64_t, uint64_t, double)>(5, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 6 }, { QMetaType::QString, 7 }, { 0x80000000 | 8, 9 }, { 0x80000000 | 8, 10 },
-            { QMetaType::Double, 11 },
-        }}),
-        // Signal 'chunkProcessed'
-        QtMocHelpers::SignalData<void(int, int)>(12, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Int, 13 }, { QMetaType::Int, 14 },
-        }}),
-        // Signal 'errorOccurred'
-        QtMocHelpers::SignalData<void(const QString &)>(15, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 16 },
-        }}),
-        // Slot 'compress'
-        QtMocHelpers::SlotData<void(const QString &, const QString &, int)>(17, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 18 }, { QMetaType::QString, 19 }, { QMetaType::Int, 20 },
-        }}),
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<CompressionWorker, qt_meta_tag_ZN17CompressionWorkerE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       5,   14, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       4,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    2,   44,    2, 0x06,    1 /* Public */,
+       5,    5,   49,    2, 0x06,    4 /* Public */,
+      12,    2,   60,    2, 0x06,   10 /* Public */,
+      15,    1,   65,    2, 0x06,   13 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+      17,    3,   68,    2, 0x0a,   15 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, QMetaType::Int, QMetaType::QString,    3,    4,
+    QMetaType::Void, QMetaType::Bool, QMetaType::QString, 0x80000000 | 8, 0x80000000 | 8, QMetaType::Double,    6,    7,    9,   10,   11,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   13,   14,
+    QMetaType::Void, QMetaType::QString,   16,
+
+ // slots: parameters
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::Int,   18,   19,   20,
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject CompressionWorker::staticMetaObject = { {
     QMetaObject::SuperData::link<QObject::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN17CompressionWorkerE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN17CompressionWorkerE_t>.data,
+    qt_meta_stringdata_CompressionWorker.offsetsAndSizes,
+    qt_meta_data_CompressionWorker,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN17CompressionWorkerE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_CompressionWorker_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<CompressionWorker, std::true_type>,
+        // method 'progressUpdated'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'compressionFinished'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<uint64_t, std::false_type>,
+        QtPrivate::TypeAndForceComplete<uint64_t, std::false_type>,
+        QtPrivate::TypeAndForceComplete<double, std::false_type>,
+        // method 'chunkProcessed'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'errorOccurred'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'compress'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>
+    >,
     nullptr
 } };
 
 void CompressionWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<CompressionWorker *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<CompressionWorker *>(_o);
+        (void)_t;
         switch (_id) {
-        case 0: _t->progressUpdated((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2]))); break;
-        case 1: _t->compressionFinished((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<uint64_t>>(_a[3])),(*reinterpret_cast<std::add_pointer_t<uint64_t>>(_a[4])),(*reinterpret_cast<std::add_pointer_t<double>>(_a[5]))); break;
-        case 2: _t->chunkProcessed((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2]))); break;
-        case 3: _t->errorOccurred((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 4: _t->compress((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[3]))); break;
+        case 0: _t->progressUpdated((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 1: _t->compressionFinished((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<uint64_t>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<uint64_t>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<double>>(_a[5]))); break;
+        case 2: _t->chunkProcessed((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        case 3: _t->errorOccurred((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 4: _t->compress((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3]))); break;
         default: ;
         }
-    }
-    if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (CompressionWorker::*)(int , const QString & )>(_a, &CompressionWorker::progressUpdated, 0))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (CompressionWorker::*)(bool , const QString & , uint64_t , uint64_t , double )>(_a, &CompressionWorker::compressionFinished, 1))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (CompressionWorker::*)(int , int )>(_a, &CompressionWorker::chunkProcessed, 2))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (CompressionWorker::*)(const QString & )>(_a, &CompressionWorker::errorOccurred, 3))
-            return;
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (CompressionWorker::*)(int , const QString & );
+            if (_t _q_method = &CompressionWorker::progressUpdated; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (CompressionWorker::*)(bool , const QString & , uint64_t , uint64_t , double );
+            if (_t _q_method = &CompressionWorker::compressionFinished; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (CompressionWorker::*)(int , int );
+            if (_t _q_method = &CompressionWorker::chunkProcessed; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 2;
+                return;
+            }
+        }
+        {
+            using _t = void (CompressionWorker::*)(const QString & );
+            if (_t _q_method = &CompressionWorker::errorOccurred; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 3;
+                return;
+            }
+        }
     }
 }
 
@@ -134,7 +224,7 @@ const QMetaObject *CompressionWorker::metaObject() const
 void *CompressionWorker::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN17CompressionWorkerE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_CompressionWorker.stringdata0))
         return static_cast<void*>(this);
     return QObject::qt_metacast(_clname);
 }
@@ -148,8 +238,7 @@ int CompressionWorker::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 5;
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 5)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
         _id -= 5;
@@ -160,24 +249,29 @@ int CompressionWorker::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void CompressionWorker::progressUpdated(int _t1, const QString & _t2)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1, _t2);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
 void CompressionWorker::compressionFinished(bool _t1, const QString & _t2, uint64_t _t3, uint64_t _t4, double _t5)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1, _t2, _t3, _t4, _t5);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t5))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
 void CompressionWorker::chunkProcessed(int _t1, int _t2)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1, _t2);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 
 // SIGNAL 3
 void CompressionWorker::errorOccurred(const QString & _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 QT_WARNING_POP
+QT_END_MOC_NAMESPACE

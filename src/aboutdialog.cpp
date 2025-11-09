@@ -15,7 +15,7 @@ AboutDialog::AboutDialog(QWidget* parent)
     
     QVBoxLayout* layout = new QVBoxLayout(this);
     
-    QLabel* titleLabel = new QLabel("Parallel File Compressor v2.0");
+    QLabel* titleLabel = new QLabel("Parallel File Compressor & Decompressor");
     QFont font = titleLabel->font();
     font.setPointSize(16);
     font.setBold(true);

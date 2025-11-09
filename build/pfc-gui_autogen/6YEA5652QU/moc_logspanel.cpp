@@ -1,25 +1,19 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'logspanel.hpp'
 **
-** Created by: The Qt Meta Object Compiler version 69 (Qt 6.10.0)
+** Created by: The Qt Meta Object Compiler version 68 (Qt 6.4.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../../../include/logspanel.hpp"
 #include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
-
-#include <QtCore/qtmochelpers.h>
-
-#include <memory>
-
-
-#include <QtCore/qxptype_traits.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'logspanel.hpp' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 69
-#error "This file was generated using the moc from 6.10.0. It"
+#elif Q_MOC_OUTPUT_REVISION != 68
+#error "This file was generated using the moc from 6.4.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -28,45 +22,59 @@
 #define Q_CONSTINIT
 #endif
 
+QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-QT_WARNING_DISABLE_GCC("-Wuseless-cast")
 namespace {
-struct qt_meta_tag_ZN9LogsPanelE_t {};
+struct qt_meta_stringdata_LogsPanel_t {
+    uint offsetsAndSizes[2];
+    char stringdata0[10];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_LogsPanel_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_LogsPanel_t qt_meta_stringdata_LogsPanel = {
+    {
+        QT_MOC_LITERAL(0, 9)   // "LogsPanel"
+    },
+    "LogsPanel"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto LogsPanel::qt_create_metaobjectdata<qt_meta_tag_ZN9LogsPanelE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "LogsPanel"
-    };
+Q_CONSTINIT static const uint qt_meta_data_LogsPanel[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<LogsPanel, qt_meta_tag_ZN9LogsPanelE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject LogsPanel::staticMetaObject = { {
     QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN9LogsPanelE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN9LogsPanelE_t>.data,
+    qt_meta_stringdata_LogsPanel.offsetsAndSizes,
+    qt_meta_data_LogsPanel,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN9LogsPanelE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_LogsPanel_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<LogsPanel, std::true_type>
+    >,
     nullptr
 } };
 
 void LogsPanel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<LogsPanel *>(_o);
-    (void)_t;
-    (void)_c;
+    (void)_o;
     (void)_id;
+    (void)_c;
     (void)_a;
 }
 
@@ -78,7 +86,7 @@ const QMetaObject *LogsPanel::metaObject() const
 void *LogsPanel::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN9LogsPanelE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_LogsPanel.stringdata0))
         return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
@@ -89,3 +97,4 @@ int LogsPanel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 QT_WARNING_POP
+QT_END_MOC_NAMESPACE
