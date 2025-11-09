@@ -26,7 +26,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_DecompressionWorker_t {
-    uint offsetsAndSizes[36];
+    uint offsetsAndSizes[42];
     char stringdata0[20];
     char stringdata1[16];
     char stringdata2[1];
@@ -36,15 +36,18 @@ struct qt_meta_stringdata_DecompressionWorker_t {
     char stringdata6[8];
     char stringdata7[8];
     char stringdata8[7];
-    char stringdata9[15];
-    char stringdata10[11];
-    char stringdata11[12];
-    char stringdata12[14];
-    char stringdata13[6];
-    char stringdata14[11];
-    char stringdata15[10];
-    char stringdata16[11];
-    char stringdata17[12];
+    char stringdata9[9];
+    char stringdata10[15];
+    char stringdata11[17];
+    char stringdata12[15];
+    char stringdata13[11];
+    char stringdata14[12];
+    char stringdata15[14];
+    char stringdata16[6];
+    char stringdata17[11];
+    char stringdata18[10];
+    char stringdata19[11];
+    char stringdata20[12];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_DecompressionWorker_t::offsetsAndSizes) + ofs), len 
@@ -59,15 +62,18 @@ Q_CONSTINIT static const qt_meta_stringdata_DecompressionWorker_t qt_meta_string
         QT_MOC_LITERAL(77, 7),  // "success"
         QT_MOC_LITERAL(85, 7),  // "message"
         QT_MOC_LITERAL(93, 6),  // "timeMs"
-        QT_MOC_LITERAL(100, 14),  // "chunkProcessed"
-        QT_MOC_LITERAL(115, 10),  // "chunkIndex"
-        QT_MOC_LITERAL(126, 11),  // "totalChunks"
-        QT_MOC_LITERAL(138, 13),  // "errorOccurred"
-        QT_MOC_LITERAL(152, 5),  // "error"
-        QT_MOC_LITERAL(158, 10),  // "decompress"
-        QT_MOC_LITERAL(169, 9),  // "inputFile"
-        QT_MOC_LITERAL(179, 10),  // "outputFile"
-        QT_MOC_LITERAL(190, 11)   // "threadCount"
+        QT_MOC_LITERAL(100, 8),  // "uint64_t"
+        QT_MOC_LITERAL(109, 14),  // "compressedSize"
+        QT_MOC_LITERAL(124, 16),  // "decompressedSize"
+        QT_MOC_LITERAL(141, 14),  // "chunkProcessed"
+        QT_MOC_LITERAL(156, 10),  // "chunkIndex"
+        QT_MOC_LITERAL(167, 11),  // "totalChunks"
+        QT_MOC_LITERAL(179, 13),  // "errorOccurred"
+        QT_MOC_LITERAL(193, 5),  // "error"
+        QT_MOC_LITERAL(199, 10),  // "decompress"
+        QT_MOC_LITERAL(210, 9),  // "inputFile"
+        QT_MOC_LITERAL(220, 10),  // "outputFile"
+        QT_MOC_LITERAL(231, 11)   // "threadCount"
     },
     "DecompressionWorker",
     "progressUpdated",
@@ -78,6 +84,9 @@ Q_CONSTINIT static const qt_meta_stringdata_DecompressionWorker_t qt_meta_string
     "success",
     "message",
     "timeMs",
+    "uint64_t",
+    "compressedSize",
+    "decompressedSize",
     "chunkProcessed",
     "chunkIndex",
     "totalChunks",
@@ -106,21 +115,21 @@ Q_CONSTINIT static const uint qt_meta_data_DecompressionWorker[] = {
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
        1,    2,   44,    2, 0x06,    1 /* Public */,
-       5,    3,   49,    2, 0x06,    4 /* Public */,
-       9,    2,   56,    2, 0x06,    8 /* Public */,
-      12,    1,   61,    2, 0x06,   11 /* Public */,
+       5,    5,   49,    2, 0x06,    4 /* Public */,
+      12,    2,   60,    2, 0x06,   10 /* Public */,
+      15,    1,   65,    2, 0x06,   13 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-      14,    3,   64,    2, 0x0a,   13 /* Public */,
+      17,    3,   68,    2, 0x0a,   15 /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int, QMetaType::QString,    3,    4,
-    QMetaType::Void, QMetaType::Bool, QMetaType::QString, QMetaType::Double,    6,    7,    8,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,   10,   11,
-    QMetaType::Void, QMetaType::QString,   13,
+    QMetaType::Void, QMetaType::Bool, QMetaType::QString, QMetaType::Double, 0x80000000 | 9, 0x80000000 | 9,    6,    7,    8,   10,   11,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   13,   14,
+    QMetaType::Void, QMetaType::QString,   16,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::Int,   15,   16,   17,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::Int,   18,   19,   20,
 
        0        // eod
 };
@@ -143,6 +152,8 @@ Q_CONSTINIT const QMetaObject DecompressionWorker::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<bool, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         QtPrivate::TypeAndForceComplete<double, std::false_type>,
+        QtPrivate::TypeAndForceComplete<uint64_t, std::false_type>,
+        QtPrivate::TypeAndForceComplete<uint64_t, std::false_type>,
         // method 'chunkProcessed'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
@@ -166,7 +177,7 @@ void DecompressionWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
         (void)_t;
         switch (_id) {
         case 0: _t->progressUpdated((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 1: _t->decompressionFinished((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<double>>(_a[3]))); break;
+        case 1: _t->decompressionFinished((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<double>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<uint64_t>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<uint64_t>>(_a[5]))); break;
         case 2: _t->chunkProcessed((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         case 3: _t->errorOccurred((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 4: _t->decompress((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3]))); break;
@@ -182,7 +193,7 @@ void DecompressionWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
             }
         }
         {
-            using _t = void (DecompressionWorker::*)(bool , const QString & , double );
+            using _t = void (DecompressionWorker::*)(bool , const QString & , double , uint64_t , uint64_t );
             if (_t _q_method = &DecompressionWorker::decompressionFinished; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 1;
                 return;
@@ -243,9 +254,9 @@ void DecompressionWorker::progressUpdated(int _t1, const QString & _t2)
 }
 
 // SIGNAL 1
-void DecompressionWorker::decompressionFinished(bool _t1, const QString & _t2, double _t3)
+void DecompressionWorker::decompressionFinished(bool _t1, const QString & _t2, double _t3, uint64_t _t4, uint64_t _t5)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t5))) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 

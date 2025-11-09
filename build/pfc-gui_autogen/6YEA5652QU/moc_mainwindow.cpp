@@ -27,7 +27,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_MainWindow_t {
-    uint offsetsAndSizes[56];
+    uint offsetsAndSizes[58];
     char stringdata0[11];
     char stringdata1[18];
     char stringdata2[1];
@@ -47,15 +47,16 @@ struct qt_meta_stringdata_MainWindow_t {
     char stringdata16[7];
     char stringdata17[24];
     char stringdata18[24];
-    char stringdata19[20];
+    char stringdata19[17];
     char stringdata20[20];
-    char stringdata21[15];
-    char stringdata22[13];
-    char stringdata23[8];
-    char stringdata24[11];
-    char stringdata25[14];
-    char stringdata26[6];
-    char stringdata27[12];
+    char stringdata21[20];
+    char stringdata22[15];
+    char stringdata23[13];
+    char stringdata24[8];
+    char stringdata25[11];
+    char stringdata26[14];
+    char stringdata27[6];
+    char stringdata28[12];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_MainWindow_t::offsetsAndSizes) + ofs), len 
@@ -80,15 +81,16 @@ Q_CONSTINIT static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_Main
         QT_MOC_LITERAL(221, 6),  // "timeMs"
         QT_MOC_LITERAL(228, 23),  // "onDecompressionProgress"
         QT_MOC_LITERAL(252, 23),  // "onDecompressionFinished"
-        QT_MOC_LITERAL(276, 19),  // "onBenchmarkProgress"
-        QT_MOC_LITERAL(296, 19),  // "onBenchmarkFinished"
-        QT_MOC_LITERAL(316, 14),  // "sequentialTime"
-        QT_MOC_LITERAL(331, 12),  // "parallelTime"
-        QT_MOC_LITERAL(344, 7),  // "speedup"
-        QT_MOC_LITERAL(352, 10),  // "efficiency"
-        QT_MOC_LITERAL(363, 13),  // "onWorkerError"
-        QT_MOC_LITERAL(377, 5),  // "error"
-        QT_MOC_LITERAL(383, 11)   // "onShowAbout"
+        QT_MOC_LITERAL(276, 16),  // "decompressedSize"
+        QT_MOC_LITERAL(293, 19),  // "onBenchmarkProgress"
+        QT_MOC_LITERAL(313, 19),  // "onBenchmarkFinished"
+        QT_MOC_LITERAL(333, 14),  // "sequentialTime"
+        QT_MOC_LITERAL(348, 12),  // "parallelTime"
+        QT_MOC_LITERAL(361, 7),  // "speedup"
+        QT_MOC_LITERAL(369, 10),  // "efficiency"
+        QT_MOC_LITERAL(380, 13),  // "onWorkerError"
+        QT_MOC_LITERAL(394, 5),  // "error"
+        QT_MOC_LITERAL(400, 11)   // "onShowAbout"
     },
     "MainWindow",
     "onCompressClicked",
@@ -109,6 +111,7 @@ Q_CONSTINIT static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_Main
     "timeMs",
     "onDecompressionProgress",
     "onDecompressionFinished",
+    "decompressedSize",
     "onBenchmarkProgress",
     "onBenchmarkFinished",
     "sequentialTime",
@@ -144,11 +147,11 @@ Q_CONSTINIT static const uint qt_meta_data_MainWindow[] = {
        7,    2,   97,    2, 0x08,    6 /* Private */,
       10,    5,  102,    2, 0x08,    9 /* Private */,
       17,    2,  113,    2, 0x08,   15 /* Private */,
-      18,    3,  118,    2, 0x08,   18 /* Private */,
-      19,    1,  125,    2, 0x08,   22 /* Private */,
-      20,    6,  128,    2, 0x08,   24 /* Private */,
-      25,    1,  141,    2, 0x08,   31 /* Private */,
-      27,    0,  144,    2, 0x08,   33 /* Private */,
+      18,    5,  118,    2, 0x08,   18 /* Private */,
+      20,    1,  129,    2, 0x08,   24 /* Private */,
+      21,    6,  132,    2, 0x08,   26 /* Private */,
+      26,    1,  145,    2, 0x08,   33 /* Private */,
+      28,    0,  148,    2, 0x08,   35 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -159,10 +162,10 @@ Q_CONSTINIT static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, QMetaType::Int, QMetaType::QString,    8,    9,
     QMetaType::Void, QMetaType::Bool, QMetaType::QString, 0x80000000 | 13, 0x80000000 | 13, QMetaType::Double,   11,   12,   14,   15,   16,
     QMetaType::Void, QMetaType::Int, QMetaType::QString,    8,    9,
-    QMetaType::Void, QMetaType::Bool, QMetaType::QString, QMetaType::Double,   11,   12,   16,
+    QMetaType::Void, QMetaType::Bool, QMetaType::QString, QMetaType::Double, 0x80000000 | 13, 0x80000000 | 13,   11,   12,   16,   15,   19,
     QMetaType::Void, QMetaType::QString,    9,
-    QMetaType::Void, QMetaType::Double, QMetaType::Double, QMetaType::Double, QMetaType::Double, 0x80000000 | 13, 0x80000000 | 13,   21,   22,   23,   24,   14,   15,
-    QMetaType::Void, QMetaType::QString,   26,
+    QMetaType::Void, QMetaType::Double, QMetaType::Double, QMetaType::Double, QMetaType::Double, 0x80000000 | 13, 0x80000000 | 13,   22,   23,   24,   25,   14,   15,
+    QMetaType::Void, QMetaType::QString,   27,
     QMetaType::Void,
 
        0        // eod
@@ -207,6 +210,8 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<bool, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         QtPrivate::TypeAndForceComplete<double, std::false_type>,
+        QtPrivate::TypeAndForceComplete<uint64_t, std::false_type>,
+        QtPrivate::TypeAndForceComplete<uint64_t, std::false_type>,
         // method 'onBenchmarkProgress'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
@@ -241,7 +246,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 5: _t->onCompressionProgress((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 6: _t->onCompressionFinished((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<uint64_t>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<uint64_t>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<double>>(_a[5]))); break;
         case 7: _t->onDecompressionProgress((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 8: _t->onDecompressionFinished((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<double>>(_a[3]))); break;
+        case 8: _t->onDecompressionFinished((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<double>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<uint64_t>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<uint64_t>>(_a[5]))); break;
         case 9: _t->onBenchmarkProgress((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 10: _t->onBenchmarkFinished((*reinterpret_cast< std::add_pointer_t<double>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<double>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<double>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<double>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<uint64_t>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<uint64_t>>(_a[6]))); break;
         case 11: _t->onWorkerError((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;

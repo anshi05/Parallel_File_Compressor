@@ -16,7 +16,8 @@ public slots:
     
 signals:
     void progressUpdated(int percentage, const QString& status);
-    void decompressionFinished(bool success, const QString& message, double timeMs);
+    void decompressionFinished(bool success, const QString& message, double timeMs,
+                               uint64_t compressedSize, uint64_t decompressedSize);
     void chunkProcessed(int chunkIndex, int totalChunks);
     void errorOccurred(const QString& error);
     

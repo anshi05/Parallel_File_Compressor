@@ -151,9 +151,33 @@ void MainWindow::onSelectOutputFile() {
 }
 
 void MainWindow::onCompressClicked() {
-    if (inputFileEdit->text().isEmpty() || outputFileEdit->text().isEmpty()) {
-        QMessageBox::warning(this, "Input Error", "Please select both input and output files.");
+    if (inputFileEdit->text().isEmpty()) {
+        QMessageBox::warning(this, "Input Error", "Please select an input file.");
         return;
+    }
+    
+    // Validate input file exists
+    if (!Utils::fileExists(inputFileEdit->text().toStdString())) {
+        QMessageBox::critical(this, "Error", 
+            QString("Error: Input file not found: %1").arg(inputFileEdit->text()));
+        return;
+    }
+    
+    // Auto-generate output file if not specified
+    QString outputFile = outputFileEdit->text();
+    if (outputFile.isEmpty()) {
+        outputFile = inputFileEdit->text() + ".pfc";
+        outputFileEdit->setText(outputFile);
+    }
+    
+    // Validate output file extension
+    if (!outputFile.endsWith(".pfc", Qt::CaseInsensitive)) {
+        QMessageBox::warning(this, "Warning", 
+            "Output file should have .pfc extension. Using: " + outputFile);
+        if (!outputFile.endsWith(".pfc")) {
+            outputFile += ".pfc";
+            outputFileEdit->setText(outputFile);
+        }
     }
     
     if (!compressionThread) {
@@ -179,7 +203,7 @@ void MainWindow::onCompressClicked() {
     
     QMetaObject::invokeMethod(compressionWorker, "compress", Qt::QueuedConnection,
                             Q_ARG(QString, inputFileEdit->text()),
-                            Q_ARG(QString, outputFileEdit->text()),
+                            Q_ARG(QString, outputFile),
                             Q_ARG(int, threadCountSpinBox->value()));
 }
 
@@ -195,11 +219,16 @@ void MainWindow::onCompressionFinished(bool success, const QString& message,
     compressBtn->setEnabled(true);
     
     if (success) {
+        // Set dashboard title and ratio label for compression
+        dashboard->setStatisticsTitle("Compression Statistics");
+        dashboard->setRatioLabel("Compression Ratio:");
+        
         double compressionRatio = 0.0;
         if (originalSize > 0) {
             compressionRatio = (1.0 - static_cast<double>(compressedSize) / originalSize) * 100.0;
         }
         dashboard->updateStats(originalSize, compressedSize, compressionRatio, 0.0, timeMs);
+        dashboard->setThreadCount(threadCountSpinBox->value());
         statusLabel->setText("Compression completed successfully!");
         logsPanel->addLog(message);
         overallProgressBar->setValue(100);
@@ -213,9 +242,33 @@ void MainWindow::onCompressionFinished(bool success, const QString& message,
 }
 
 void MainWindow::onDecompressClicked() {
-    if (inputFileEdit->text().isEmpty() || outputFileEdit->text().isEmpty()) {
-        QMessageBox::warning(this, "Input Error", "Please select both input and output files.");
+    if (inputFileEdit->text().isEmpty()) {
+        QMessageBox::warning(this, "Input Error", "Please select an input file.");
         return;
+    }
+    
+    // Validate input file exists
+    if (!Utils::fileExists(inputFileEdit->text().toStdString())) {
+        QMessageBox::critical(this, "Error", 
+            QString("Error: Input file not found: %1").arg(inputFileEdit->text()));
+        return;
+    }
+    
+    // Validate input file is .pfc
+    if (!inputFileEdit->text().endsWith(".pfc", Qt::CaseInsensitive)) {
+        QMessageBox::critical(this, "Error", 
+            QString("Error: Input file must be a .pfc file: %1").arg(inputFileEdit->text()));
+        return;
+    }
+    
+    // Auto-generate output file if not specified
+    QString outputFile = outputFileEdit->text();
+    if (outputFile.isEmpty()) {
+        // Try to extract original filename from .pfc file
+        // For now, just remove .pfc extension
+        QString inputPath = inputFileEdit->text();
+        outputFile = inputPath.left(inputPath.length() - 4); // Remove .pfc
+        outputFileEdit->setText(outputFile);
     }
     
     if (!decompressionThread) {
@@ -240,7 +293,7 @@ void MainWindow::onDecompressClicked() {
     
     QMetaObject::invokeMethod(decompressionWorker, "decompress", Qt::QueuedConnection,
                             Q_ARG(QString, inputFileEdit->text()),
-                            Q_ARG(QString, outputFileEdit->text()),
+                            Q_ARG(QString, outputFile),
                             Q_ARG(int, threadCountSpinBox->value()));
 }
 
@@ -250,21 +303,48 @@ void MainWindow::onDecompressionProgress(int percentage, const QString& status) 
     logsPanel->addLog(status);
 }
 
-void MainWindow::onDecompressionFinished(bool success, const QString& message, double timeMs) {
+void MainWindow::onDecompressionFinished(bool success, const QString& message, double timeMs,
+                                        uint64_t compressedSize, uint64_t decompressedSize) {
     decompressBtn->setEnabled(true);
-    statusLabel->setText(success ? "Decompression completed!" : "Decompression failed!");
-    logsPanel->addLog(message);
+    
     if (success) {
+        // Set dashboard title and ratio label for decompression
+        dashboard->setStatisticsTitle("Decompression Statistics");
+        dashboard->setRatioLabel("Decompression Ratio:");
+        
+        // Update dashboard with decompression stats
+        // For decompression: compressedSize is input (.pfc file), decompressedSize is output (original file)
+        // Display: compressed → decompressed (smaller → larger) to show expansion
+        // Compression ratio: (1 - compressed/decompressed) * 100
+        double compressionRatio = 0.0;
+        if (decompressedSize > 0) {
+            compressionRatio = (1.0 - static_cast<double>(compressedSize) / decompressedSize) * 100.0;
+        }
+        // Show compressed size → decompressed size (smaller → larger)
+        dashboard->updateStats(compressedSize, decompressedSize, compressionRatio, 0.0, timeMs);
+        dashboard->setThreadCount(threadCountSpinBox->value());
+        statusLabel->setText("Decompression completed!");
+        logsPanel->addLog(message);
+        overallProgressBar->setValue(100);
         QMessageBox::information(this, "Success", message);
     } else {
+        statusLabel->setText("Decompression failed!");
+        logsPanel->addLog("Error: " + message);
+        overallProgressBar->setValue(0);
         QMessageBox::critical(this, "Error", message);
     }
-    overallProgressBar->setValue(0);
 }
 
 void MainWindow::onBenchmarkClicked() {
     if (inputFileEdit->text().isEmpty()) {
         QMessageBox::warning(this, "Input Error", "Please select an input file.");
+        return;
+    }
+    
+    // Validate input file exists
+    if (!Utils::fileExists(inputFileEdit->text().toStdString())) {
+        QMessageBox::critical(this, "Error", 
+            QString("Error: Input file not found: %1").arg(inputFileEdit->text()));
         return;
     }
     
@@ -303,12 +383,18 @@ void MainWindow::onBenchmarkFinished(double sequentialTime, double parallelTime,
                                     uint64_t originalSize, uint64_t compressedSize) {
     benchmarkBtn->setEnabled(true);
     
+    // Set dashboard title and ratio label for benchmark
+    dashboard->setStatisticsTitle("Benchmark Statistics");
+    dashboard->setRatioLabel("Compression Ratio:");
+    
     // Update performance graph
     dashboard->updatePerformanceGraph(sequentialTime, parallelTime);
     
-    // Update dashboard stats with benchmark results
+    // Update dashboard stats with benchmark results using the new method
     double compressionRatio = (1.0 - static_cast<double>(compressedSize) / originalSize) * 100.0;
-    dashboard->updateStats(originalSize, compressedSize, compressionRatio, speedup, parallelTime);
+    dashboard->updateBenchmarkStats(originalSize, compressedSize, compressionRatio,
+                                   sequentialTime, parallelTime, speedup, efficiency);
+    dashboard->setThreadCount(threadCountSpinBox->value());
     
     statusLabel->setText("Benchmark completed!");
     logsPanel->addLog(QString("Speedup: %1x, Efficiency: %2%")

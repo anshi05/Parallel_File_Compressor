@@ -32,7 +32,8 @@ private slots:
     void onCompressionFinished(bool success, const QString& message, 
                                uint64_t originalSize, uint64_t compressedSize, double timeMs);
     void onDecompressionProgress(int percentage, const QString& status);
-    void onDecompressionFinished(bool success, const QString& message, double timeMs);
+    void onDecompressionFinished(bool success, const QString& message, double timeMs,
+                                 uint64_t compressedSize, uint64_t decompressedSize);
     void onBenchmarkProgress(const QString& status);
     void onBenchmarkFinished(double sequentialTime, double parallelTime, 
                            double speedup, double efficiency, 

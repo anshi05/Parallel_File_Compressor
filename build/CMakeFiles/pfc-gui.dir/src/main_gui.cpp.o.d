@@ -423,6 +423,8 @@ CMakeFiles/pfc-gui.dir/src/main_gui.cpp.o: \
  /home/anshi/Desktop/Parallel_File_Compressor/include/progressdashboard.hpp \
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QWidget \
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qwidget.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGroupBox \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgroupbox.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCharts/QChartView \
  /usr/include/x86_64-linux-gnu/qt6/QtCharts/qchartview.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCharts/QAbstractAxis \

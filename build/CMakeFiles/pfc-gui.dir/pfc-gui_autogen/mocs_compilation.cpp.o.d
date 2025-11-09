@@ -434,6 +434,8 @@ CMakeFiles/pfc-gui.dir/pfc-gui_autogen/mocs_compilation.cpp.o: \
  /home/anshi/Desktop/Parallel_File_Compressor/build/pfc-gui_autogen/6YEA5652QU/../../../include/decompressionworker.hpp \
  /home/anshi/Desktop/Parallel_File_Compressor/build/pfc-gui_autogen/6YEA5652QU/../../../include/benchmarkworker.hpp \
  /home/anshi/Desktop/Parallel_File_Compressor/build/pfc-gui_autogen/6YEA5652QU/../../../include/progressdashboard.hpp \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGroupBox \
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgroupbox.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCharts/QChartView \
  /usr/include/x86_64-linux-gnu/qt6/QtCharts/qchartview.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCharts/QAbstractAxis \
