@@ -41,7 +41,7 @@ void ProgressDashboard::setupUI()
 
     // --- Chart section ---
     chart = new QChart();
-    chart->setTitle("Performance Comparison");
+    chart->setTitle("Performance Comparison (Sequential vs Parallel)");
 
     performanceSeries = new QLineSeries();
     performanceSeries->setName("Execution Time");
@@ -51,10 +51,13 @@ void ProgressDashboard::setupUI()
     QValueAxis* axisX = new QValueAxis();
     axisX->setLabelFormat("%d");
     axisX->setTitleText("Run");
+    axisX->setRange(0, 3);
+    axisX->setTickCount(4);
 
     QValueAxis* axisY = new QValueAxis();
     axisY->setLabelFormat("%.2f");
     axisY->setTitleText("Time (ms)");
+    axisY->setMin(0);
 
     chart->addAxis(axisX, Qt::AlignBottom);
     chart->addAxis(axisY, Qt::AlignLeft);
@@ -86,6 +89,17 @@ void ProgressDashboard::updatePerformanceGraph(double sequentialTime, double par
     // use 1 and 2 as x-values to represent sequential and parallel
     performanceSeries->append(1, sequentialTime);
     performanceSeries->append(2, parallelTime);
+    
+    // Update Y-axis range to fit the data
+    QValueAxis* axisY = qobject_cast<QValueAxis*>(chart->axes(Qt::Vertical).first());
+    if (axisY) {
+        double maxTime = qMax(sequentialTime, parallelTime);
+        axisY->setMax(maxTime * 1.2); // Add 20% padding
+    }
+    
+    // Update chart to refresh the view
+    chart->update();
+    chartView->update();
 }
 
 void ProgressDashboard::reset()

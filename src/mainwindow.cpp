@@ -195,17 +195,21 @@ void MainWindow::onCompressionFinished(bool success, const QString& message,
     compressBtn->setEnabled(true);
     
     if (success) {
-        double compressionRatio = (1.0 - static_cast<double>(compressedSize) / originalSize) * 100.0;
+        double compressionRatio = 0.0;
+        if (originalSize > 0) {
+            compressionRatio = (1.0 - static_cast<double>(compressedSize) / originalSize) * 100.0;
+        }
         dashboard->updateStats(originalSize, compressedSize, compressionRatio, 0.0, timeMs);
         statusLabel->setText("Compression completed successfully!");
         logsPanel->addLog(message);
+        overallProgressBar->setValue(100);
         QMessageBox::information(this, "Success", message);
     } else {
         statusLabel->setText("Compression failed!");
         logsPanel->addLog("Error: " + message);
+        overallProgressBar->setValue(0);
         QMessageBox::critical(this, "Error", message);
     }
-    overallProgressBar->setValue(0);
 }
 
 void MainWindow::onDecompressClicked() {
@@ -298,7 +302,14 @@ void MainWindow::onBenchmarkFinished(double sequentialTime, double parallelTime,
                                     double speedup, double efficiency,
                                     uint64_t originalSize, uint64_t compressedSize) {
     benchmarkBtn->setEnabled(true);
+    
+    // Update performance graph
     dashboard->updatePerformanceGraph(sequentialTime, parallelTime);
+    
+    // Update dashboard stats with benchmark results
+    double compressionRatio = (1.0 - static_cast<double>(compressedSize) / originalSize) * 100.0;
+    dashboard->updateStats(originalSize, compressedSize, compressionRatio, speedup, parallelTime);
+    
     statusLabel->setText("Benchmark completed!");
     logsPanel->addLog(QString("Speedup: %1x, Efficiency: %2%")
                      .arg(speedup, 0, 'f', 2)
