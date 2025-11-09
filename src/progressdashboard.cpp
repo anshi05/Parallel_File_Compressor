@@ -1,17 +1,9 @@
 #include "progressdashboard.hpp"
+
 #include <QVBoxLayout>
-#include <QHBoxLayout>
 #include <QGridLayout>
 #include <QGroupBox>
-#include <QtCharts/QChartView>
-#include <QtCharts/QChart>
-#include <QtCharts/QLineSeries>
-#include <QtCharts/QValueAxis>
-#include <QtCharts/QBarSeries>
-#include <QtCharts/QBarSet>
-#include <QtCharts/QBarCategoryAxis>
-
-using namespace QtCharts;
+#include <QPainter>
 
 ProgressDashboard::ProgressDashboard(QWidget* parent)
     : QWidget(parent)
@@ -19,66 +11,89 @@ ProgressDashboard::ProgressDashboard(QWidget* parent)
     setupUI();
 }
 
-void ProgressDashboard::setupUI() {
+void ProgressDashboard::setupUI()
+{
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
-    
+
+    // --- Stats group ---
     QGroupBox* statsGroup = new QGroupBox("Compression Statistics", this);
-    QGridLayout* gridLayout = new QGridLayout(statsGroup);
-    
-    gridLayout->addWidget(new QLabel("File Size:"), 0, 0);
+    QGridLayout* statsLayout = new QGridLayout(statsGroup);
+
     filesizeLabel = new QLabel("N/A");
-    gridLayout->addWidget(filesizeLabel, 0, 1);
-    
-    gridLayout->addWidget(new QLabel("Compression Ratio:"), 0, 2);
     compressionRatioLabel = new QLabel("N/A");
-    gridLayout->addWidget(compressionRatioLabel, 0, 3);
-    
-    gridLayout->addWidget(new QLabel("Speedup:"), 1, 0);
     speedupLabel = new QLabel("N/A");
-    gridLayout->addWidget(speedupLabel, 1, 1);
-    
-    gridLayout->addWidget(new QLabel("Time Elapsed:"), 1, 2);
     timeLabel = new QLabel("N/A");
-    gridLayout->addWidget(timeLabel, 1, 3);
-    
-    gridLayout->addWidget(new QLabel("Threads Used:"), 2, 0);
-    threadsLabel = new QLabel("N/A");
-    gridLayout->addWidget(threadsLabel, 2, 1);
-    
+    threadsLabel = new QLabel(QString::number(QThread::idealThreadCount()));
+
+    statsLayout->addWidget(new QLabel("File Size:"), 0, 0);
+    statsLayout->addWidget(filesizeLabel, 0, 1);
+    statsLayout->addWidget(new QLabel("Compression Ratio:"), 1, 0);
+    statsLayout->addWidget(compressionRatioLabel, 1, 1);
+    statsLayout->addWidget(new QLabel("Speedup:"), 2, 0);
+    statsLayout->addWidget(speedupLabel, 2, 1);
+    statsLayout->addWidget(new QLabel("Time (ms):"), 3, 0);
+    statsLayout->addWidget(timeLabel, 3, 1);
+    statsLayout->addWidget(new QLabel("Threads:"), 4, 0);
+    statsLayout->addWidget(threadsLabel, 4, 1);
+
+    statsGroup->setLayout(statsLayout);
     mainLayout->addWidget(statsGroup);
-    
+
+    // --- Chart section ---
     chart = new QChart();
     chart->setTitle("Performance Comparison");
+
     performanceSeries = new QLineSeries();
-    performanceSeries->setName("Compression Time");
+    performanceSeries->setName("Execution Time");
     chart->addSeries(performanceSeries);
-    
+
+    // attach axes
+    QValueAxis* axisX = new QValueAxis();
+    axisX->setLabelFormat("%d");
+    axisX->setTitleText("Run");
+
+    QValueAxis* axisY = new QValueAxis();
+    axisY->setLabelFormat("%.2f");
+    axisY->setTitleText("Time (ms)");
+
+    chart->addAxis(axisX, Qt::AlignBottom);
+    chart->addAxis(axisY, Qt::AlignLeft);
+    performanceSeries->attachAxis(axisX);
+    performanceSeries->attachAxis(axisY);
+
     chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
+
     mainLayout->addWidget(chartView);
+
+    setLayout(mainLayout);
 }
 
-void ProgressDashboard::updateStats(uint64_t originalSize, uint64_t compressedSize, 
-                                    double compressionRatio, double speedup, double timeMs) {
-    filesizeLabel->setText(QString("%1 MB -> %2 MB")
-                          .arg(originalSize / (1024.0 * 1024.0), 0, 'f', 2)
-                          .arg(compressedSize / (1024.0 * 1024.0), 0, 'f', 2));
-    
+void ProgressDashboard::updateStats(uint64_t originalSize, uint64_t compressedSize,
+                                    double compressionRatio, double speedup, double timeMs)
+{
+    filesizeLabel->setText(QString("%1 MB → %2 MB")
+                           .arg(originalSize / (1024.0 * 1024.0), 0, 'f', 2)
+                           .arg(compressedSize / (1024.0 * 1024.0), 0, 'f', 2));
     compressionRatioLabel->setText(QString("%1%").arg(compressionRatio, 0, 'f', 2));
     speedupLabel->setText(QString("%1x").arg(speedup, 0, 'f', 2));
     timeLabel->setText(QString("%1 ms").arg(timeMs, 0, 'f', 2));
 }
 
-void ProgressDashboard::updatePerformanceGraph(double sequentialTime, double parallelTime) {
-    performanceSeries->append(sequentialTime, 1);
-    performanceSeries->append(parallelTime, 2);
+void ProgressDashboard::updatePerformanceGraph(double sequentialTime, double parallelTime)
+{
+    performanceSeries->clear();
+    // use 1 and 2 as x-values to represent sequential and parallel
+    performanceSeries->append(1, sequentialTime);
+    performanceSeries->append(2, parallelTime);
 }
 
-void ProgressDashboard::reset() {
+void ProgressDashboard::reset()
+{
     filesizeLabel->setText("N/A");
     compressionRatioLabel->setText("N/A");
     speedupLabel->setText("N/A");
     timeLabel->setText("N/A");
-    threadsLabel->setText("N/A");
+    threadsLabel->setText(QString::number(QThread::idealThreadCount()));
     performanceSeries->clear();
 }

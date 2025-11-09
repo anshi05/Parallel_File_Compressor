@@ -1,0 +1,3 @@
+C:\msys64\mingw64\bin\cmake.exe -E rm -f CMakeFiles\pfc.dir/objects.a
+C:\msys64\mingw64\bin\ar.exe qc CMakeFiles\pfc.dir/objects.a @CMakeFiles\pfc.dir\objects1.rsp
+C:\msys64\mingw64\bin\c++.exe  -O3 -O3 -DNDEBUG -Wl,--whole-archive CMakeFiles\pfc.dir/objects.a -Wl,--no-whole-archive -o pfc.exe -Wl,--out-implib,libpfc.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\pfc.dir\linkLibs.rsp

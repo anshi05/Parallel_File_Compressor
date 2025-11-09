@@ -1,0 +1,8 @@
+C:/Users/prath/Desktop/Parallel_File_Compressor/build/CMakeFiles/pfc.dir
+C:/Users/prath/Desktop/Parallel_File_Compressor/build/CMakeFiles/pfc-gui.dir
+C:/Users/prath/Desktop/Parallel_File_Compressor/build/CMakeFiles/edit_cache.dir
+C:/Users/prath/Desktop/Parallel_File_Compressor/build/CMakeFiles/rebuild_cache.dir
+C:/Users/prath/Desktop/Parallel_File_Compressor/build/CMakeFiles/pfc_autogen_timestamp_deps.dir
+C:/Users/prath/Desktop/Parallel_File_Compressor/build/CMakeFiles/pfc_autogen.dir
+C:/Users/prath/Desktop/Parallel_File_Compressor/build/CMakeFiles/pfc-gui_autogen_timestamp_deps.dir
+C:/Users/prath/Desktop/Parallel_File_Compressor/build/CMakeFiles/pfc-gui_autogen.dir

@@ -9,10 +9,14 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
+# --- Dependencies ---
 find_package(ZLIB REQUIRED)
 find_package(OpenMP REQUIRED)
-find_package(Qt6 COMPONENTS Core Gui Widgets Charts REQUIRED)
+find_package(Qt6 COMPONENTS Core Widgets Charts REQUIRED)
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+# --- CLI Executable ---
 add_executable(pfc
     src/main.cpp
     src/compressor.cpp
@@ -20,10 +24,13 @@ add_executable(pfc
     src/benchmark.cpp
     src/utils.cpp
 )
-
 target_link_libraries(pfc PRIVATE ZLIB::ZLIB OpenMP::OpenMP_CXX)
-target_include_directories(pfc PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
+# --- GUI Executable ---
 add_executable(pfc-gui
     src/main_gui.cpp
     src/compressor.cpp
@@ -39,20 +46,29 @@ add_executable(pfc-gui
     src/splashscreen.cpp
     src/aboutdialog.cpp
     resources/resources.qrc
+
+    include/mainwindow.hpp
+    include/splashscreen.hpp
+    include/aboutdialog.hpp
+    include/logspanel.hpp
+    include/progressdashboard.hpp
+    include/compressionworker.hpp
+    include/decompressionworker.hpp
+    include/benchmarkworker.hpp
+
+
 )
 
-target_link_libraries(pfc-gui PRIVATE 
-    ZLIB::ZLIB 
-    OpenMP::OpenMP_CXX 
-    Qt6::Core 
-    Qt6::Gui 
-    Qt6::Widgets 
+target_link_libraries(pfc-gui PRIVATE
+    ZLIB::ZLIB
+    OpenMP::OpenMP_CXX
+    Qt6::Core
+    Qt6::Widgets
     Qt6::Charts
 )
-target_include_directories(pfc-gui PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-message(STATUS "Build Configuration:")
-message(STATUS "  C++ Standard: ${CMAKE_CXX_STANDARD}")
-message(STATUS "  OpenMP: Found")
-message(STATUS "  zlib: Found")
-message(STATUS "  Qt6: Found (GUI enabled)")
+message(STATUS "✅ Configuration Summary:")
+message(STATUS "C++ Standard: ${CMAKE_CXX_STANDARD}")
+message(STATUS "OpenMP: Found")
+message(STATUS "ZLIB: Found")
+message(STATUS "Qt6 (Core, Widgets, Charts): Found")

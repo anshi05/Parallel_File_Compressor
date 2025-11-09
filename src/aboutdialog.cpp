@@ -3,6 +3,8 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QApplication>
+#include <QThread>
+
 
 AboutDialog::AboutDialog(QWidget* parent)
     : QDialog(parent)

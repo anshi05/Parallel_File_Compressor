@@ -7,6 +7,8 @@
 #include <iostream>
 #include <iomanip>
 #include <chrono>
+#include <cstring>
+
 
 struct FileMetadata {
     static constexpr uint32_t MAGIC = 0x50464331; // "PFC1"
